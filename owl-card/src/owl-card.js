@@ -108,18 +108,52 @@ class OwlCard extends LitElement {
       
     </div>
       
-    <Button class="button-other" id="button-duplicate">Duplicate</Button>
+    <Button class="button-other" id="button-duplicate" @click=${this.duplicateCard}>Duplicate</Button>
     
-    <Button class="button-other" id="button-delete">Delete</Button>
+    <Button class="button-other" id="button-delete" @click=${deleteCard}>Delete</Button>
       
-    <Button class="button-other" id="button-color" onClick="toggleBackground()">Toggle Background Color</Button>
+    <Button class="button-other" id="button-color" @click=${toggleBackground}>Toggle Background Color</Button>
 
-    <Button class="button-other" id="button-heading" onClick="changeHeading()">Change Heading</Button>
+    <Button class="button-other" id="button-heading" @click=${changeHeading}>Change Heading</Button>
       
-    <Button class="button-other" id="button-description" onClick="toggleDescription()">Toggle Description</Button>
+    <Button class="button-other" id="button-description" @click=${toggleDescription}>Toggle Description</Button>
       
     </div>  
     `;
+  }
+
+  duplicateCard() {
+    let card = document.querySelector(".card");
+    let clonedCard = card.cloneNode(true);
+    clonedCard.id = 'clonedcard';
+    document.body.appendChild(clonedCard);
+  }
+
+  deleteCard() {
+    let card = document.querySelector(".card");
+    let clonedCard = card.cloneNode(true);
+    clonedCard.id = 'clonedcard';
+    document.querySelector("#clonedcard").remove();
+  }
+
+  toggleBackground() {
+    let c = document.querySelector("#card");
+    c.className = 'toggled' == c.className ? '' : 'toggled';
+  }
+  
+  changeHeading() {
+    let h = document.querySelector("h1");
+    h.innerHTML = "MTD";
+  }
+  
+  toggleDescription() {
+    const details = document.querySelector('summary');
+    if (details.parentNode.getAttribute('open')) {
+      details.parentNode.removeAttribute('open');
+    }
+    else {
+      details.parentNode.setAttribute('open','open');   
+    }
   }
 }
 
