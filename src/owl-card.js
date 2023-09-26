@@ -122,31 +122,31 @@ class OwlCard extends LitElement {
     `;
   }
 
-  duplicateCard() {
+  function duplicateCard() {
     let card = document.querySelector(".card");
     let clonedCard = card.cloneNode(true);
     clonedCard.id = 'clonedcard';
     document.body.appendChild(clonedCard);
   }
 
-  deleteCard() {
+  function deleteCard() {
     let card = document.querySelector(".card");
     let clonedCard = card.cloneNode(true);
     clonedCard.id = 'clonedcard';
     document.querySelector("#clonedcard").remove();
   }
 
-  toggleBackground() {
+  function toggleBackground() {
     let c = document.querySelector("#card");
     c.className = 'toggled' == c.className ? '' : 'toggled';
   }
   
-  changeHeading() {
+  function changeHeading() {
     let h = document.querySelector("h1");
     h.innerHTML = "MTD";
   }
   
-  toggleDescription() {
+  function toggleDescription() {
     const details = document.querySelector('summary');
     if (details.parentNode.getAttribute('open')) {
       details.parentNode.removeAttribute('open');
