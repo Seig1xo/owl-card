@@ -86,7 +86,7 @@ class OwlCard extends LitElement {
 
   constructor() {
     super();
-    this.header = 'My app';
+    this.header = 'Supertf';
   }
 
   render() {
@@ -106,32 +106,32 @@ class OwlCard extends LitElement {
       
     </div>
       
-    <Button class="button-other" id="button-duplicate" onclick="duplicateCard()">Duplicate</Button>
+    <Button class="button-other" id="button-duplicate" @click=${this.duplicateCard}>Duplicate</Button>
     
-    <Button class="button-other" id="button-delete" onclick="deleteCard()">Delete</Button>
+    <Button class="button-other" id="button-delete" @click=${this.deleteCard}>Delete</Button>
       
-    <Button class="button-other" id="button-color" onclick="toggleBackground()">Toggle Background Color</Button>
+    <Button class="button-other" id="button-color" @click=${this.toggleBackground}>Toggle Background Color</Button>
 
-    <Button class="button-other" id="button-heading" onclick="changeHeading()">Change Heading</Button>
+    <Button class="button-other" id="button-heading" @click=${this.changeHeading}>Change Heading</Button>
       
-    <Button class="button-other" id="button-description" onclick="toggleDescription()">Toggle Description</Button>
+    <Button class="button-other" id="button-description" @click=${this.toggleDescription}>Toggle Description</Button>
       
     </div>  
     `;
   }
 
-   duplicateCard() {
+  duplicateCard() {
     let card = this.shadowRoot.querySelector(".card");
     let clonedCard = card.cloneNode(true);
     clonedCard.id = 'clonedcard';
-    this.shadowRoot.body.appendChild(clonedCard);
+    this.shadowRoot.appendChild(clonedCard);
   }
 
   deleteCard() {
-    let card = document.querySelector(".card");
+    let card = this.shadowRoot.querySelector(".card");
     let clonedCard = card.cloneNode(true);
     clonedCard.id = 'clonedcard';
-    document.querySelector("#clonedcard").remove();
+    this.shadowRoot.querySelector("#clonedcard").remove();
   }
 
   toggleBackground() {
@@ -140,12 +140,17 @@ class OwlCard extends LitElement {
   }
   
   changeHeading() {
-    let h = document.querySelector("h1");
-    h.innerHTML = "MTD";
+    let h = this.shadowRoot.querySelector("h1");
+    if (h.innerHTML == "MTD") {
+      h.innerHTML = "super";
+    }
+    else {
+      h.innerHTML = "MTD"
+    }
   }
   
   toggleDescription() {
-    const details = document.querySelector('summary');
+    const details = this.shadowRoot.querySelector('summary');
     if (details.parentNode.getAttribute('open')) {
       details.parentNode.removeAttribute('open');
     }
