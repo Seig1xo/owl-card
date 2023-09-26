@@ -86,7 +86,7 @@ class OwlCard extends LitElement {
 
   constructor() {
     super();
-    this.header = 'Supertf';
+    this.header = 'supertf';
   }
 
   render() {
@@ -145,7 +145,7 @@ class OwlCard extends LitElement {
       h.innerHTML = "super";
     }
     else {
-      h.innerHTML = "MTD"
+      h.innerHTML = "MTD";
     }
   }
   
