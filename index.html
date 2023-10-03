@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="Description" content="Put your description here.">
+  <meta name="Description" content="supertf">
   <base href="/">
 
   <style>
@@ -14,7 +14,7 @@
       padding: 0;
       background-color: #ededed;
     }
-    .button-other { 
+    button { 
       font-size: 22px;
       text-decoration: none;
       background-color: #A6AEB1;
@@ -23,7 +23,7 @@
       border-radius: 16px;
       height:50px
     }
-    .button-other:hover, .button-other:focus {
+    button:hover, button:focus {
       color: orange;
       background-color: white;
     }
@@ -32,12 +32,15 @@
 </head>
 
 <body>
+  <div>
+    <button id="button-duplicate" onclick="duplicateCard()">Duplicate</button>
+    <button id="button-delete" onclick="deleteCard()">Delete</button>
+    <button id="button-color" onclick="toggleBackground()">Toggle Background Color</button>
+    <button id="button-heading" onclick="changeHeading()">Change Heading</button>
+    <button id="button-description" onclick="toggleDescription()">Toggle Description</button>
+  </div>
+
   <owl-card></owl-card>
-  <Button class="button-other" id="button-duplicate" onclick="duplicateCard()">Duplicate</Button>
-  <Button class="button-other" id="button-delete" onclick="deleteCard()">Delete</Button>
-  <Button class="button-other" id="button-color" onclick="toggleBackground()">Toggle Background Color</Button>
-  <Button class="button-other" id="button-heading" onclick="changeHeading()">Change Heading</Button>
-  <Button class="button-other" id="button-description" onclick="toggleDescription()">Toggle Description</Button>
   <script>
   function duplicateCard() {
     let card = document.querySelector("owl-card").shadowRoot.querySelector(".card");
@@ -54,17 +57,13 @@
   }
 
   function toggleBackground() {
-    let c = document.querySelector("owl-card").shadowRoot.querySelector("#card");
-    c.className = 'toggled' == c.className ? '' : 'toggled';
+    document.querySelector("owl-card").toggleBackground();
   }
   
   function changeHeading() {
-    let h = document.querySelector("owl-card").shadowRoot.querySelector("h1");
-    if (h.innerHTML == "MTD") {
-      h.innerHTML = "super";
-    }
-    else {
-      h.innerHTML = "MTD";
+    let heading = prompt("Name the card:");
+    if (heading) {
+      document.querySelector("owl-card").name = heading;
     }
   }
   

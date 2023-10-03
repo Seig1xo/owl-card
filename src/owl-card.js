@@ -2,15 +2,23 @@ import { LitElement, html, css } from 'lit';
 
 class OwlCard extends LitElement {
   static properties = {
-    header: { type: String },
+    name: { type: String },
+    image: { type: String },
+    alt: { type: String },
+    description: { type: String },
+    toggle: { type: Boolean, reflect: true }
   }
 
   static styles = css`
+    :host {
+      display: inline-block;
+    }
+
     .wrapper {
       display: inline-flex;
     }
 
-    .card, #card {
+    .card {
       max-width: 400px;
       margin: 8px;
       padding: 16px;
@@ -19,14 +27,14 @@ class OwlCard extends LitElement {
       text-align: center;
     }
 
-    .card img, #card img {
+    .card img {
       width: 90%;
       margin-left: auto;
       margin-right: auto;
       border: 4px solid grey;
     }
 
-    .card h1, #card h1 {
+    .card h1 {
       font-size: 32px;
       margin-bottom: 32px;
       color: white;
@@ -59,6 +67,10 @@ class OwlCard extends LitElement {
       }
     }
 
+    :host([toggle]) .card {
+      background-color: #FC4B00;
+    }
+
     #card.toggled {
       max-width: 400px;
       margin: 8px;
@@ -69,27 +81,35 @@ class OwlCard extends LitElement {
     }
   `;
 
+  toggleBackground() {
+    this.toggle = !this.toggle;
+  }
+
   constructor() {
     super();
-    this.header = 'supertf';
+    this.toggle = false;
+    this.name = 'super';
+    this.image = 'https://www.gamersdecide.com/sites/default/files/authors/u156421/super.jpg';
+    this.alt = 'Card Pic';
+    this.description = 'Matthew "super" DeLisi is a retired American player who last played for San Francisco Shock. He is one of the most decorated competitive Overwatch players, being a two time Overwatch League Champion, World Cup Champion, Stage 2 Champion, May Melee Tournament Champion, Role Star, All Star and MVP Runner-Up.';
   }
 
   render() {
     return html`
     <div class="wrapper">
 
-    <div class="card" id="card">
+      <div class="card">
 
-    <h1>super</h1>
+        <h1>${this.name}</h1>
       
-    <img src="https://www.gamersdecide.com/sites/default/files/authors/u156421/super.jpg" alt="Card Pic">
+        <img src=${this.image} alt=${this.alt}>
       
-      <details>
-        <summary>Description</summary>
-        <p>Matthew "super" DeLisi is a retired American player who last played for San Francisco Shock. He is one of the most decorated competitive Overwatch players, being a two time Overwatch League Champion, World Cup Champion, Stage 2 Champion, May Melee Tournament Champion, Role Star, All Star and MVP Runner-Up.</p>
-      </details>
+        <details>
+          <summary>Description</summary>
+          <p>${this.description}<slot></slot></p>
+        </details>
       
-    </div>
+      </div>
       
     </div>  
     `;
