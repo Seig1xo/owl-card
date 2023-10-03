@@ -47,11 +47,6 @@ class OwlCard extends LitElement {
       display: none;
     }
 
-    .button-other:hover, .button-other:focus {
-      color: orange;
-      background-color: white;
-    }
-
     @media screen and (max-width: 799px) {
       details {
         display: none;
@@ -62,16 +57,6 @@ class OwlCard extends LitElement {
       div {
         transform: scale(0.7);
       }
-    }
-
-    .button-other { 
-      font-size: 22px;
-      text-decoration: none;
-      background-color: #A6AEB1;
-      color: black;
-      padding: 8px 16px;
-      border-radius: 16px;
-      height:50px
     }
 
     #card.toggled {
@@ -106,57 +91,8 @@ class OwlCard extends LitElement {
       
     </div>
       
-    <Button class="button-other" id="button-duplicate" @click=${this.duplicateCard}>Duplicate</Button>
-    
-    <Button class="button-other" id="button-delete" @click=${this.deleteCard}>Delete</Button>
-      
-    <Button class="button-other" id="button-color" @click=${this.toggleBackground}>Toggle Background Color</Button>
-
-    <Button class="button-other" id="button-heading" @click=${this.changeHeading}>Change Heading</Button>
-      
-    <Button class="button-other" id="button-description" @click=${this.toggleDescription}>Toggle Description</Button>
-      
     </div>  
     `;
-  }
-
-  duplicateCard() {
-    let card = this.shadowRoot.querySelector(".card");
-    let clonedCard = card.cloneNode(true);
-    clonedCard.id = 'clonedcard';
-    this.shadowRoot.appendChild(clonedCard);
-  }
-
-  deleteCard() {
-    let card = this.shadowRoot.querySelector(".card");
-    let clonedCard = card.cloneNode(true);
-    clonedCard.id = 'clonedcard';
-    this.shadowRoot.querySelector("#clonedcard").remove();
-  }
-
-  toggleBackground() {
-    let c = this.shadowRoot.querySelector("#card");
-    c.className = 'toggled' == c.className ? '' : 'toggled';
-  }
-  
-  changeHeading() {
-    let h = this.shadowRoot.querySelector("h1");
-    if (h.innerHTML == "MTD") {
-      h.innerHTML = "super";
-    }
-    else {
-      h.innerHTML = "MTD";
-    }
-  }
-  
-  toggleDescription() {
-    const details = this.shadowRoot.querySelector('summary');
-    if (details.parentNode.getAttribute('open')) {
-      details.parentNode.removeAttribute('open');
-    }
-    else {
-      details.parentNode.setAttribute('open','open');   
-    }
   }
 }
 

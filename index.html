@@ -14,13 +14,70 @@
       padding: 0;
       background-color: #ededed;
     }
+    .button-other { 
+      font-size: 22px;
+      text-decoration: none;
+      background-color: #A6AEB1;
+      color: black;
+      padding: 8px 16px;
+      border-radius: 16px;
+      height:50px
+    }
+    .button-other:hover, .button-other:focus {
+      color: orange;
+      background-color: white;
+    }
   </style>
   <title>owl-card</title>
 </head>
 
 <body>
   <owl-card></owl-card>
+  <Button class="button-other" id="button-duplicate" onclick="duplicateCard()">Duplicate</Button>
+  <Button class="button-other" id="button-delete" onclick="deleteCard()">Delete</Button>
+  <Button class="button-other" id="button-color" onclick="toggleBackground()">Toggle Background Color</Button>
+  <Button class="button-other" id="button-heading" onclick="changeHeading()">Change Heading</Button>
+  <Button class="button-other" id="button-description" onclick="toggleDescription()">Toggle Description</Button>
+  <script>
+  function duplicateCard() {
+    let card = document.querySelector("owl-card").shadowRoot.querySelector(".card");
+    let clonedCard = card.cloneNode(true);
+    clonedCard.id = 'clonedcard';
+    document.querySelector("owl-card").shadowRoot.appendChild(clonedCard);
+  }
 
+  function deleteCard() {
+    let card = document.querySelector("owl-card").shadowRoot.querySelector(".card");
+    let clonedCard = card.cloneNode(true);
+    clonedCard.id = 'clonedcard';
+    document.querySelector("owl-card").shadowRoot.querySelector("#clonedcard").remove();
+  }
+
+  function toggleBackground() {
+    let c = document.querySelector("owl-card").shadowRoot.querySelector("#card");
+    c.className = 'toggled' == c.className ? '' : 'toggled';
+  }
+  
+  function changeHeading() {
+    let h = document.querySelector("owl-card").shadowRoot.querySelector("h1");
+    if (h.innerHTML == "MTD") {
+      h.innerHTML = "super";
+    }
+    else {
+      h.innerHTML = "MTD";
+    }
+  }
+  
+  function toggleDescription() {
+    const details = document.querySelector("owl-card").shadowRoot.querySelector('summary');
+    if (details.parentNode.getAttribute('open')) {
+      details.parentNode.removeAttribute('open');
+    }
+    else {
+      details.parentNode.setAttribute('open','open');   
+    }
+  }
+  </script>
   <script type="module" src="./src/owl-card.js"></script>
 </body>
 
