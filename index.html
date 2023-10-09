@@ -42,40 +42,40 @@
 
   <owl-card></owl-card>
   <script>
-  function duplicateCard() {
-    let card = document.querySelector("owl-card").shadowRoot.querySelector(".card");
-    let clonedCard = card.cloneNode(true);
-    clonedCard.id = 'clonedcard';
-    document.querySelector("owl-card").shadowRoot.appendChild(clonedCard);
-  }
-
-  function deleteCard() {
-    let card = document.querySelector("owl-card").shadowRoot.querySelector(".card");
-    let clonedCard = card.cloneNode(true);
-    clonedCard.id = 'clonedcard';
-    document.querySelector("owl-card").shadowRoot.querySelector("#clonedcard").remove();
-  }
-
-  function toggleBackground() {
-    document.querySelector("owl-card").toggleBackground();
-  }
+    function duplicateCard() {
+      let card = document.querySelector("owl-card").shadowRoot.querySelector(".card");
+      let clonedCard = card.cloneNode(true);
+      clonedCard.id = 'clonedcard';
+      document.querySelector("owl-card").shadowRoot.appendChild(clonedCard);
+    }
   
-  function changeHeading() {
-    let heading = prompt("Name the card:");
-    if (heading) {
-      document.querySelector("owl-card").name = heading;
+    function deleteCard() {
+      let card = document.querySelector("owl-card").shadowRoot.querySelector(".card");
+      let clonedCard = card.cloneNode(true);
+      clonedCard.id = 'clonedcard';
+      document.querySelector("owl-card").shadowRoot.querySelector("#clonedcard").remove();
     }
-  }
   
-  function toggleDescription() {
-    const details = document.querySelector("owl-card").shadowRoot.querySelector('summary');
-    if (details.parentNode.getAttribute('open')) {
-      details.parentNode.removeAttribute('open');
+    function toggleBackground() {
+      document.querySelector("owl-card").toggleBackground();
     }
-    else {
-      details.parentNode.setAttribute('open','open');   
+    
+    function changeHeading() {
+      let heading = prompt("Name the card:");
+      if (heading) {
+        document.querySelector("owl-card").name = heading;
+      }
     }
-  }
+    
+    function toggleDescription() {
+      const details = document.querySelector("owl-card").shadowRoot.querySelector('summary');
+      if (details.parentNode.getAttribute('open')) {
+        details.parentNode.removeAttribute('open');
+      }
+      else {
+        details.parentNode.setAttribute('open','open');   
+      }
+    }
   </script>
   <script type="module" src="./src/owl-card.js"></script>
 </body>
